@@ -99,11 +99,13 @@ def graph_search(problem, fringe):
     If two paths reach a state, only use the best one. [Fig. 3.18]"""
     closed = {}
     fringe.append(Node(problem.initial))
+    expandedNodes = 0
     while fringe:
         node = fringe.pop()
         if problem.goal_test(node.state):
-            return node
+            return node, expandedNodes
         if node.state not in closed:
+            expandedNodes += 1
             closed[node.state] = True
             fringe.extend(node.expand(problem))
     return None
@@ -123,6 +125,8 @@ def branch_and_bound_graph_search(problem):
     return graph_search(problem, BranchAndBoundStructure())
 
 
+def branch_and_bound_estimate_graph_search(problem):
+    return graph_search(problem, BranchAndBoundEstimateStructure(problem))
 
 # _____________________________________________________________________________
 # The remainder of this file implements examples for the search algorithms.

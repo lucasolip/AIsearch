@@ -2,6 +2,8 @@
 #______________________________________________________________________________
 # Simple Data Structures: infinity, Dict, Struct
 
+import math
+
 infinity = 1.0e400
 
 
@@ -558,6 +560,26 @@ class BranchAndBoundStructure:
     def extend(self, items):
         self.A.extend(items)
         self.A.sort(reverse=True, key=lambda x: x.path_cost)
+
+    def pop(self):
+        return self.A.pop()
+
+
+class BranchAndBoundEstimateStructure:
+    def __init__(self, problem):
+        self.A = []
+        self.start = 0
+        self.problem = problem
+
+    def append(self, item):
+        self.A.append(item)
+
+    def __len__(self):
+        return len(self.A) - self.start
+
+    def extend(self, items):
+        self.A.extend(items)
+        self.A.sort(reverse=True, key=lambda x: (x.path_cost + self.problem.h(x)))
 
     def pop(self):
         return self.A.pop()
