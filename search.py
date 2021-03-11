@@ -120,7 +120,6 @@ def depth_first_graph_search(problem):
 
 
 def branch_and_bound_graph_search(problem):
-    """Search the deepest nodes in the search tree first. [p 74]"""
     return graph_search(problem, BranchAndBoundStructure())
 
 

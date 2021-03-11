@@ -543,6 +543,7 @@ class FIFOQueue(Queue):
             self.start = 0
         return e
 
+
 class BranchAndBoundStructure:
     def __init__(self):
         self.A = []
@@ -559,12 +560,7 @@ class BranchAndBoundStructure:
         self.A.sort(reverse=True, key=lambda x: x.path_cost)
 
     def pop(self):
-        e = self.A[self.start]
-        self.start += 1
-        if self.start > 5 and self.start > len(self.A) / 2:
-            self.A = self.A[self.start:]
-            self.start = 0
-        return e
+        return self.A.pop()
 
 
 ## Fig: The idea is we can define things like Fig[3,10] later.
