@@ -18,8 +18,7 @@ testCities = [('A', 'B'), ('O', 'E'), ('D', 'N'), ('S', 'B'), ('O', 'T')]
 
 averageBB = 0
 averageBBE = 0
-for couple in testCities:
-    a, b = couple
+for a, b in testCities:
     resultBB, resultBBE = searchPathBetweenCities(a, b)
     averageBB += resultBB
     averageBBE += resultBBE
